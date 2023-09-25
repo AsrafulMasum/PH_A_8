@@ -1,8 +1,10 @@
-section{
-  background-image: url('https://i.postimg.cc/9Mm52xLV/banner.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  background-blend-mode: overlay;
-  background-color: rgba(255, 255, 255, 0.95);
+@media screen and (min-width: 1024px) {
+  section{
+    background-image: url('https://i.postimg.cc/9Mm52xLV/banner.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-blend-mode: overlay;
+    background-color: rgba(255, 255, 255, 0.95);
+  }
 }
