@@ -24,7 +24,7 @@ const Donation = () => {
           <DonationPageCard key={data.id} data={data}></DonationPageCard>
         ))}
       </div>
-      <div className={displayDataLength === donatedData.length ? "hidden" : "text-center"}>
+      <div className={donatedData.length < 5 || donatedData.length === displayDataLength ? "hidden" : "text-center"}>
         <button onClick={() => setDisplayDataLength(donatedData.length)} className="mb-10 bg-[#009444] text-white font-semibold px-6 py-2 rounded">See All</button>
       </div>
     </div>

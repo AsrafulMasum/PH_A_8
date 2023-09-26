@@ -14,7 +14,7 @@ const DonationPageCard = ({ data }) => {
   const displayPrice = price.toFixed(2);
   return (
     <div
-      className="flex rounded-lg"
+      className="flex flex-col md:flex-row rounded-lg"
       style={{
         backgroundColor: `${card_bg_color}`,
       }}
@@ -47,7 +47,7 @@ const DonationPageCard = ({ data }) => {
         </p>
         <NavLink to={`/donation-details/${id}`}>
           <button
-            className="ml-4 py-2 px-6 rounded font-semibold text-white"
+            className="ml-4 mb-4 md:mb-0 py-2 px-6 rounded font-semibold text-white"
             style={{
               backgroundColor: `${text_button_bg_color}`,
             }}

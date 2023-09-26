@@ -1,3 +1,4 @@
+
 const getLSIds = () => {
   const storedLSData = localStorage.getItem('donationId');
   if(storedLSData){
@@ -14,5 +15,6 @@ const handleSaveToLS = (id) => {
     localStorage.setItem('donationId', JSON.stringify(storedLSData))
   }
 }
+
 
 export {handleSaveToLS, getLSIds}
