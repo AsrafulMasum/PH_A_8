@@ -1,18 +1,24 @@
 import { useLoaderData } from "react-router-dom";
 import Banner from "../components/Banner";
 import DonationCards from "../components/DonationCards";
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
 export const DataContext = createContext()
 
 const Home = () => {
   const data = useLoaderData()
 
+  const [searchValue, setSearchValue] = useState('')
+
+  const handleSearch = (value) => {
+    setSearchValue(value);
+  }
+
   return (
     <div>
       <DataContext.Provider value={data}>
-        <Banner></Banner>
-        <DonationCards data={data}></DonationCards>
+        <Banner handleSearch={handleSearch}></Banner>
+        <DonationCards searchValue={searchValue} data={data}></DonationCards>
       </DataContext.Provider>
     </div>
   );

@@ -9,7 +9,7 @@ const Statistics = () => {
   const donationLength = donatedIds.length;
 
   const data = [
-    { name: "Total Donation", value: allDataLength },
+    { name: "Total Donation", value: allDataLength-donationLength },
     { name: "Your Donation", value: donationLength },
   ];
 
