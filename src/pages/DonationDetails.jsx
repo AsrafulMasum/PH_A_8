@@ -3,6 +3,7 @@ import { useLoaderData, useParams } from "react-router-dom";
 import { getLSIds, handleSaveToLS } from "../utility/localStorage";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { Helmet } from "react-helmet-async";
 
 const DonationDetails = () => {
   const data = useLoaderData()
@@ -30,6 +31,9 @@ const DonationDetails = () => {
   
   return (
     <div className="my-10">
+      <Helmet>
+        <title>Donation Campaign | Details Id : {id}</title>
+      </Helmet>
       <div>
         <img className="w-full rounded-lg" src={currentData.image} alt="" />
       </div>

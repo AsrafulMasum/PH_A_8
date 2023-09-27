@@ -20,7 +20,11 @@ const DonationCard = ({ card }) => {
       }}
     >
       <div className="lg:h-56">
-        <img className="rounded-t-lg w-full h-full object-cover" src={image} alt="Image" />
+        <img
+          className="rounded-t-lg w-full h-full object-cover"
+          src={image}
+          alt="Image"
+        />
       </div>
       <div
         className="m-4 inline-block px-4 py-1 rounded-md"

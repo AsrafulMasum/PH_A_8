@@ -1,15 +1,16 @@
 import { Cell, Legend, Pie, PieChart } from "recharts";
 import { getLSIds } from "../utility/localStorage";
 import { useLoaderData } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Statistics = () => {
-  const allData = useLoaderData()
-  const allDataLength = allData.length
+  const allData = useLoaderData();
+  const allDataLength = allData.length;
   const donatedIds = getLSIds();
   const donationLength = donatedIds.length;
 
   const data = [
-    { name: "Total Donation", value: allDataLength-donationLength },
+    { name: "Total Donation", value: allDataLength - donationLength },
     { name: "Your Donation", value: donationLength },
   ];
 
@@ -42,6 +43,9 @@ const Statistics = () => {
 
   return (
     <div className="text-center">
+      <Helmet>
+       <title>Donation Campaign | Statistics</title>
+      </Helmet>
       <PieChart className="inline-block" width={400} height={400}>
         <Pie
           data={data}

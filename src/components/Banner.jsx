@@ -16,7 +16,7 @@ const Banner = ({handleSearch}) => {
         <div>
           <form onSubmit={handleSubmit}>
             <input className="w-1/3 h-12 border-[1px] p-4 rounded-l-lg outline-none" type="text" name='search' placeholder="Search here...."/>
-            <input className="h-12 w-24 bg-[#FF444A] rounded-r-lg text-white cursor-pointer" type="submit" value="Submit" />
+            <input className="h-12 w-24 bg-[#FF444A] rounded-r-lg text-white cursor-pointer" type="submit" value="Search" />
           </form>
         </div>
       </section>

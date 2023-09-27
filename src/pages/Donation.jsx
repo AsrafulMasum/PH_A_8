@@ -2,6 +2,7 @@ import { useLoaderData } from "react-router-dom";
 import { getLSIds } from "../utility/localStorage";
 import { useEffect, useState } from "react";
 import DonationPageCard from "../components/DonationPageCard";
+import { Helmet } from "react-helmet-async";
 
 const Donation = () => {
   const allData = useLoaderData();
@@ -19,6 +20,9 @@ const Donation = () => {
 
   return (
     <div>
+      <Helmet>
+       <title>Donation Campaign | Donation</title>
+      </Helmet>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 my-10">
         {donatedData?.slice(0, displayDataLength).map((data) => (
           <DonationPageCard key={data.id} data={data}></DonationPageCard>
