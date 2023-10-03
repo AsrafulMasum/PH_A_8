@@ -1,10 +1,17 @@
 import { Link } from "react-router-dom";
 import "./signup.css";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../provider/Provider";
+import { ToastContainer, toast } from "react-toastify";
 
 const SignUp = () => {
-  const [show, setShow] = useState(false);
+  const [showPass1, setShowPass1] = useState(false);
+  const [showPass2, setShowPass2] = useState(false);
+
+  const [error, setError] = useState("");
+
+  const { registerUser } = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -23,7 +30,23 @@ const SignUp = () => {
     const pass2 = e.target.pass2.value;
     e.target.pass2.value = "";
 
+    setError("");
+
     console.log(userName, imageURL, email, pass1, pass2);
+
+    if (pass1 === pass2) {
+      registerUser(email, pass1)
+        .then((res) => {
+          console.log(res.user);
+          toast.success("Register Successful.");
+        })
+        .catch((err) => {
+          setError(err.message);
+        });
+    } else {
+      toast.error("Password Confirmation Invalid.");
+      return;
+    }
   };
 
   return (
@@ -158,16 +181,16 @@ const SignUp = () => {
               </span>
 
               <input
-                type={show ? "text" : "password"}
+                type={showPass1 ? "text" : "password"}
                 name="pass1"
                 className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                 placeholder="Password"
               />
               <div
                 className="text-xl cursor-pointer absolute right-3"
-                onClick={() => setShow(!show)}
+                onClick={() => setShowPass1(!showPass1)}
               >
-                {show ? <BsEyeSlash></BsEyeSlash> : <BsEye></BsEye>}
+                {showPass1 ? <BsEyeSlash></BsEyeSlash> : <BsEye></BsEye>}
               </div>
             </div>
 
@@ -190,16 +213,16 @@ const SignUp = () => {
               </span>
 
               <input
-                type={show ? "text" : "password"}
+                type={showPass2 ? "text" : "password"}
                 name="pass2"
                 className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                 placeholder="Confirm Password"
               />
               <div
                 className="text-xl cursor-pointer absolute right-3"
-                onClick={() => setShow(!show)}
+                onClick={() => setShowPass2(!showPass2)}
               >
-                {show ? <BsEyeSlash></BsEyeSlash> : <BsEye></BsEye>}
+                {showPass2 ? <BsEyeSlash></BsEyeSlash> : <BsEye></BsEye>}
               </div>
             </div>
 
@@ -207,6 +230,8 @@ const SignUp = () => {
               <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                 Sign Up
               </button>
+
+              <div className="mt-6 text-red-600 text-center">{error}</div>
 
               <div className="mt-6 text-center ">
                 <Link
@@ -220,6 +245,7 @@ const SignUp = () => {
           </form>
         </div>
       </section>
+      <ToastContainer></ToastContainer>
     </div>
   );
 };
