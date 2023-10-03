@@ -7,6 +7,7 @@ import DonationDetails from "./pages/DonationDetails";
 import Error from "./utility/Error";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
+import PrivateRoute from "./PrivateRoute";
 
 const Router = createBrowserRouter([
   {
@@ -22,17 +23,17 @@ const Router = createBrowserRouter([
       {
         path : '/donation',
         loader : async () => await fetch("/data.json"),
-        element : <Donation></Donation>
+        element : <PrivateRoute><Donation></Donation></PrivateRoute>
       },
       {
         path : '/statistics',
         loader : async () => await fetch("/data.json"),
-        element : <Statistics></Statistics>
+        element : <PrivateRoute><Statistics></Statistics></PrivateRoute>
       },
       {
         path : '/donation-details/:id',
         loader : async () => await fetch("/data.json"),
-        element : <DonationDetails></DonationDetails>
+        element : <PrivateRoute><DonationDetails></DonationDetails></PrivateRoute>
       },
       {
         path : '/signup',

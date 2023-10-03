@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom";
-import "./signup.css";
+import { Link, useNavigate } from "react-router-dom";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { useContext, useState } from "react";
 import { AuthContext } from "../provider/Provider";
@@ -11,7 +10,9 @@ const SignUp = () => {
 
   const [error, setError] = useState("");
 
-  const { registerUser } = useContext(AuthContext);
+  const { registerUser, getVerification, updateUser } = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -32,13 +33,20 @@ const SignUp = () => {
 
     setError("");
 
-    console.log(userName, imageURL, email, pass1, pass2);
-
     if (pass1 === pass2) {
       registerUser(email, pass1)
         .then((res) => {
           console.log(res.user);
           toast.success("Register Successful.");
+          getVerification().then(() => {
+            toast("Verification sent to your email.");
+          });
+          updateUser(userName, imageURL)
+          .then(() => {
+            navigate("/");
+          })
+          .catch()
+          
         })
         .catch((err) => {
           setError(err.message);

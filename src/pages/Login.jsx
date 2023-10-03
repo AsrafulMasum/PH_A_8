@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { useContext, useState } from "react";
 import { AuthContext } from "../provider/Provider";
@@ -11,15 +11,20 @@ const Login = () => {
 
   const { emailLogin, googleLogin, GithubLogin } = useContext(AuthContext);
 
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
+    e.target.email.value = "";
     const password = e.target.password.value;
+    e.target.password.value = "";
 
     emailLogin(email, password)
       .then((res) => {
         console.log(res.user);
         toast.success("Login Successful.");
+        navigate("/");
       })
       .catch((err) => {
         setError(err.message);
@@ -31,6 +36,7 @@ const Login = () => {
       .then((res) => {
         console.log(res.user);
         toast.success("Login Successful.");
+        navigate("/");
       })
       .catch((err) => {
         setError(err.message);
@@ -42,6 +48,7 @@ const Login = () => {
       .then((res) => {
         console.log(res.user);
         toast.success("Login Successful.");
+        navigate("/");
       })
       .catch((err) => {
         setError(err.message);
