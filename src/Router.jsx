@@ -5,6 +5,8 @@ import Donation from "./pages/Donation";
 import Statistics from "./pages/Statistics";
 import DonationDetails from "./pages/DonationDetails";
 import Error from "./utility/Error";
+import SignUp from "./pages/SignUp";
+import Login from "./pages/Login";
 
 const Router = createBrowserRouter([
   {
@@ -32,6 +34,14 @@ const Router = createBrowserRouter([
         loader : async () => await fetch("/data.json"),
         element : <DonationDetails></DonationDetails>
       },
+      {
+        path : '/signup',
+        element : <SignUp></SignUp>
+      },
+      {
+        path : '/login',
+        element : <Login></Login>
+      }
     ]
   }
 ])
